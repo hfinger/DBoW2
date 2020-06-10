@@ -70,11 +70,8 @@ if(BUILD_DBoW2)
     OUTPUT_NAME  "dbow2"
     LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 
-  # include libraries
-  target_include_directories(DBoW2 PRIVATE ${OpenCV_INCLUDE_DIRS})
-
   # link libraries
-  target_link_libraries(DBoW2 PRIVATE ${OpenCV_LIBS})
+  target_link_libraries(DBoW2 PRIVATE opencv_core)
 
   # install
   install(DIRECTORY include/DBoW2
@@ -101,9 +98,6 @@ if(BUILD_UTILS)
       -Wall -Wextra -pedantic $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O3>
     >)
 
-  # include libraries
-  target_include_directories(ConvertORBVocabrary PRIVATE ${OpenCV_INCLUDE_DIRS})
-
   # link libraries
-  target_link_libraries(ConvertORBVocabrary PRIVATE DBoW2 ${OpenCV_LIBS})
+  target_link_libraries(ConvertORBVocabrary PRIVATE DBoW2 opencv_core)
 endif()
